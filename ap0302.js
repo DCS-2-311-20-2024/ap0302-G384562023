@@ -15,7 +15,7 @@ function init() {
     x: 30,
     y: 10,
     z: 40,
-    radius: 40
+    speed: 0.01
   };
 
   // シーン作成
@@ -148,9 +148,10 @@ function init() {
     camera.position.x = param.x;
     camera.position.y = param.y;
     camera.position.z = param.z;
+    param.speed;
     camera.lookAt(0, 0, 0);
     camera.updateProjectionMatrix();
-    theta = (theta + 0.01) % (2 * Math.PI);
+    theta = (theta + param.speed) % (2 * Math.PI);
     car.position.x = radius * Math.cos(theta);
     car.position.z = radius * Math.sin(theta);
     car.rotation.y = -(theta);
@@ -167,7 +168,7 @@ function init() {
   gui.add(param, "x", -40, 80);
   gui.add(param, "y", -40, 80);
   gui.add(param, "z", -40, 80);
-  gui.add(param, "radius", 0, 360);
+  gui.add(param, "speed", 0, 0.1);
 
   // 描画
   render();
